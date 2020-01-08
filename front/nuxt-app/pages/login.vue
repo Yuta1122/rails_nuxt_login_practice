@@ -8,22 +8,18 @@
   >
   <div class="pa-12">
    <v-text-field
-        v-model="name"
-        :counter="10"
-        label="Name"
+        v-model="email"
+        label="Email"
         required
       ></v-text-field>
 
       <v-text-field
-        v-model="email" 
-        label="E-mail"
+        v-model="password" 
+        label="password"
         required
       ></v-text-field>
    </div>
-
    <v-btn class="mr-12 float-right" @click="submit()">submit</v-btn>
-   <p>{{this.name}},{{this.email}}</p>
-
   </v-card>
   
   <div>
@@ -38,19 +34,19 @@ import axios from "axios";
 export default {
    data: function() {    
     return {
-      name: "",
-      email: ""
+      email: "",
+      password: ""
     }
   },
   methods: {
     submit(){
        axios
           .post(`http://localhost:8080/login`, {
-            name: this.name,
-            email: this.email
+            email: this.email,
+            password: this.password
           })
       .then(response => {
-            console.log(response);
+            console.log(response.status);
           });
     }
   }
